@@ -1,0 +1,37 @@
+city,code,page_type
+Alamo,4800,page
+Blackhawk,4600,page
+Clayton,5900,page
+Concord,5701,page
+Clyde,5702,page
+Danville,4500,page
+Diablo,4700,page
+Lafayette,5100,page
+Martinez,5601,page
+Pacheco,5602,page
+Moraga Canyon,5200,page
+Orinda,5300,page
+Pleasant Hill,5400,page
+Rossmoor,5000,page
+San Ramon,4400,page
+Walnut Creek,4900,page
+Crockett Port_Costa,1100,wccar
+Rodeo,1200,wccar
+Hercules 1301,1301,wccar
+Hercules 1302,1302,wccar
+Pinole,1400,wccar
+El Sobrante_County,1500,wccar
+San Pablo_Proper,1601,wccar
+San Pablo_Tara_Hills_Bayview,1602,wccar
+San Pablo_Montavin,1603,wccar
+San Pablo_Rollingwood,1604,wccar
+Richmond El_Sobrante,1701,wccar
+Richmond Hilltop_College,1702,wccar
+Richmond View,1703,wccar
+Richmond North_&_East,1704,wccar
+Richmond North_&_West_Parchest,1705,wccar
+Richmond South,1706,wccar
+Richmond Point_Richmond_Bayfro,1707,wccar
+Richmond Annex,1708,wccar
+Richmond Country_Club,1709,wccar
+El Cerrito,1800,wccar
