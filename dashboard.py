@@ -1,9 +1,9 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import datetime
 
 import matplotlib.pyplot as plt
-#import seaborn as sns
 
 import download_data as dd
 import plotting as pl
@@ -49,8 +49,9 @@ month_to_num = {
 }
 
 # lists of cities, years and months
+curr_year = datetime.datetime.now().today().year
 cities_list = city_codes_df['city'].to_list()
-years_list = list(range(2011, 2022))
+years_list = list(range(2011, curr_year+1))
 month_list = list(num_to_month.values())
 
 st.sidebar.header('Options')
