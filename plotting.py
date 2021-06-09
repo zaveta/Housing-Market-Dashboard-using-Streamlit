@@ -17,7 +17,9 @@ colors = [
 
 def avg_price_fig(choosen_df):
     '''
-
+    Make fugure Average Price by month
+    INPUT: dataframe
+    OUTPUT: figure, plotly.graph_objects
     '''
     fig = go.Figure()
     for m in set(choosen_df["Year"]):
@@ -50,6 +52,11 @@ def avg_price_fig(choosen_df):
     return fig
 
 def diff_price_fig(choosen_df):
+    '''
+    Make fugure Percent of Original List Price
+    INPUT: dataframe
+    OUTPUT: figure, plotly.graph_objects
+    '''
     fig = go.Figure()
     price_diff = [p - 100 for p in choosen_df[
                     "Percent of Original List Price Received"
@@ -87,6 +94,11 @@ def diff_price_fig(choosen_df):
     return fig
 
 def new_listing_fig(choosen_df):
+    '''
+    Make fugure compare New Listings and Closed Sales
+    INPUT: dataframe
+    OUTPUT: figure, plotly.graph_objects
+    '''
     fig = go.Figure()
     for m in set(choosen_df["Year"]):
         color = colors[m % 10]

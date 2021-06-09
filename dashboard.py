@@ -3,16 +3,14 @@ import pandas as pd
 import numpy as np
 
 import matplotlib.pyplot as plt
-import seaborn as sns
-
-from bs4 import BeautifulSoup
-import requests
+#import seaborn as sns
 
 import download_data as dd
+import plotting as pl
 
 city_codes_df = pd.read_csv('city_codes.csv')
 
-columns = ['City', 'Townhouse-Condo Attached', 'Single-Family Detached', 
+columns = ['City', 'Townhouse-Condo Attached', 'Single-Family Detached',
            'New Listings', 'Pending Sales',
            'Closed Sales', 'Days on Market Until Sale', 'Median Sales Price',
            'Average Sales Price', 'Percent of Original List Price Received',
@@ -21,38 +19,38 @@ columns = ['City', 'Townhouse-Condo Attached', 'Single-Family Detached',
 df = pd.DataFrame(columns=columns)
 
 num_to_month = {
-    '01': "January", 
-    '02': "February", 
-    '03': "March", 
-    '04': "April", 
-    '05': "May", 
+    '01': "January",
+    '02': "February",
+    '03': "March",
+    '04': "April",
+    '05': "May",
     '06': "June",
-    '07': "July", 
-    '08': "August", 
-    '09': "September", 
-    '10': "October", 
-    '11': "November", 
+    '07': "July",
+    '08': "August",
+    '09': "September",
+    '10': "October",
+    '11': "November",
     '12': "December"
 }
 
 month_to_num = {
-    "January": '01', 
-    "February": '02', 
-    "March": '03', 
-    "April": '04', 
-    "May": '05', 
+    "January": '01',
+    "February": '02',
+    "March": '03',
+    "April": '04',
+    "May": '05',
     "June": '06',
-    "July": '07', 
-    "August": '08', 
-    "September": '09', 
-    "October": '10', 
-    "November": '11', 
+    "July": '07',
+    "August": '08',
+    "September": '09',
+    "October": '10',
+    "November": '11',
     "December": '12'
 }
 
 # lists of cities, years and months
 cities_list = city_codes_df['city'].to_list()
-years_list = list(range(2011,2022))
+years_list = list(range(2011, 2022))
 month_list = list(num_to_month.values())
 
 st.sidebar.header('Options')
@@ -66,35 +64,31 @@ house_type = st.sidebar.selectbox("Chose House Type", ("Single-Family Detached",
 
 st.title(choosen_city)
 
-for year in choosen_years:
-    for mon_name in choosen_months:
-        df = dd.loadYearAndMonthData(choosen_city, city_codes_df, month_to_num[mon_name], year, df)
+try:
+    for year in choosen_years:
+        for mon_name in choosen_months:
+            df = dd.loadYearAndMonthData(choosen_city, city_codes_df, month_to_num[mon_name], year, df)
 
-choosen_df = df[df["Year"].isin(choosen_years) & \
-                df["Month"].isin(choosen_months) & \
-                df["City"].isin([choosen_city]) & \
-                df[house_type] == 1]
-
-
-choosen_df = choosen_df.sort_values("Month_num")
-
-st.table(choosen_df[['Year', 'New Listings', 'Closed Sales',
-       'Days on Market Until Sale', 'Median Sales Price',
-       'Average Sales Price', 'Percent of Original List Price Received',
-       'Inventory of Homes for Sale']].transpose())
-
-# fig, ax = plt.subplots(figsize=(10,5))
-# sns.barplot(data=choosen_df, x='Date', y='New Listings', ax=ax, palette='OrRd')
-# plt.title("New Listings")
-# plt.xticks(rotation=45)
-# st.pyplot(fig)
-
-# fig, ax = plt.subplots(figsize=(10,5))
-# sns.barplot(data=choosen_df, x='Date', y='Median Sales Price', ax=ax, palette='OrRd')
-# plt.title("Median Sales Price")
-# plt.xticks(rotation=45)
-# st.pyplot(fig)
+    choosen_df = df[df["Year"].isin(choosen_years) &
+                    df["Month"].isin(choosen_months) &
+                    df["City"].isin([choosen_city]) &
+                    df[house_type] == 1]
 
 
+    choosen_df = choosen_df.sort_values("Year")
 
+    st.table(choosen_df[['Year', 'Month', 'New Listings', 'Closed Sales',
+                        'Days on Market Until Sale', 'Median Sales Price',
+                        'Average Sales Price', 'Percent of Original List Price Received',
+                        'Inventory of Homes for Sale']].transpose())
 
+    avg_price_fig = pl.avg_price_fig(choosen_df)
+    st.write(avg_price_fig)
+
+    diff_price_fig = pl.diff_price_fig(choosen_df)
+    st.write(diff_price_fig)
+
+    new_listing_fig = pl.new_listing_fig(choosen_df)
+    st.write(new_listing_fig)
+except ValueError:
+    st.text("Please choose year and month")
