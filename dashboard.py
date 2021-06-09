@@ -3,8 +3,6 @@ import pandas as pd
 import numpy as np
 import datetime
 
-import matplotlib.pyplot as plt
-
 import download_data as dd
 import plotting as pl
 

@@ -4,3 +4,5 @@ Monthly_Stat_Reports.db
 .venv/
 __pycache__
 .ipynb_checkpoints
+Download_data_and_Cleaning.ipynb
+Data_Analys.ipynb
