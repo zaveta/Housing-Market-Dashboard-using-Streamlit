@@ -63,6 +63,8 @@ house_type = st.sidebar.selectbox("Chose House Type", ("Single-Family Detached",
 
 st.title(choosen_city)
 
+st.write('''This app shows the history of property price changes on the East Bay. 
+            Data from [Market Statistics Monthly Stat Reports](https://ccartoday.com/market-statistics/)''')
 try:
     for year in choosen_years:
         for mon_name in choosen_months:
@@ -90,4 +92,6 @@ try:
     new_listing_fig = pl.new_listing_fig(choosen_df)
     st.write(new_listing_fig)
 except ValueError:
-    st.text("Please choose year and month")
+    st.write("Please choose year and month")
+
+

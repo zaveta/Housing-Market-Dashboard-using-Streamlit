@@ -6,3 +6,4 @@ __pycache__
 .ipynb_checkpoints
 Download_data_and_Cleaning.ipynb
 Data_Analys.ipynb
+.nfs*
